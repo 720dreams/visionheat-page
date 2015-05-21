@@ -78,12 +78,8 @@ a {
     max-width: 100px;
 }
 
-.upper-logo-small {
-    max-width: 60px;
-}
-
 .lower-logo {
-    max-width: 200px;
+    max-width: 250px;
 }
 
 ///////////////////////////////////////////
@@ -120,7 +116,7 @@ a {
     background-color: $primary;
 
     &.hero-img {
-        background: url('http://720dreams.com/images/720dreams-generator-scene.jpg') no-repeat center center fixed;
+        background: url('http://720dreams.com/images/scene.jpg') no-repeat center center fixed;
         background-size: cover;
         background-attachment: scroll;
     }
@@ -132,8 +128,21 @@ a {
 
     h1 {
         font-size: 3.2em;
-        margin-top: 20%;
+        margin-top: 10%;
     }
+}
+
+input[type=text], input[type=email]{
+    padding: .75rem;
+    background: #fff;
+    border: none;
+    border-radius: .25rem;
+    margin: 0 .25rem;
+    color: #555459;
+    font-family: Lato,sans-serif;
+    vertical-align: bottom;
+    height: 46px;
+    width: 250px;
 }
 
 ///////////////////////////////////////////
