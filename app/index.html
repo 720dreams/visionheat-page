@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 
+    <script src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+
 </head>
 <body>
 <!--[if lt IE 10]>
@@ -69,9 +71,11 @@
                 <h2>Visionheat is currently in private beta. Sign up for your free early access!</h2>
 
                 <div class="margin-signup">
-                    <input placeholder="Email Address" type="email">
-                    <input placeholder="Company Name" type="text">
-                    <input class="btn btn-white btn-outline btn-lg btn-signup" type="button" value="Sign up for Free">
+                    <div class="signUpFeedback" id="signUpFeedbackTop"></div>
+                    <input placeholder="Email Address" type="email" id="emailTop">
+                    <input placeholder="Company Name" type="text" id="companyTop">
+                    <input class="btn btn-white btn-outline btn-lg btn-signup" id="btn-signup-top" type="button"
+                           value="Sign up for Free">
                 </div>
 
                 <div class="small">Have an account?
@@ -127,9 +131,11 @@
                 <h2 class="margin-top">Visionheat is currently in private beta. Sign up for your free early access!</h2>
 
                 <div class="margin-signup">
-                    <input placeholder="Email Address" type="email">
-                    <input placeholder="Company Name" type="text">
-                    <input class="btn btn-white btn-outline btn-lg btn-signup" type="button" value="Sign up for Free">
+                    <div class="signUpFeedback" id="signUpFeedbackBottom"></div>
+                    <input placeholder="Email Address" type="email" id="emailBottom">
+                    <input placeholder="Company Name" type="text" id="companyBottom">
+                    <input class="btn btn-white btn-outline btn-lg" id="btn-signup-bottom" type="button"
+                           value="Sign up for Free">
                 </div>
 
                 <div class="small">Have an account?
@@ -174,6 +180,48 @@
     ga('create', 'UA-58650764-8');
     ga('send', 'pageview');
 </script>
+
+<script>
+    var sendToParse = function (place) {
+
+        var feedback = document.getElementById('signUpFeedback' + place),
+            email = document.getElementById('email' + place),
+            company = document.getElementById('company' + place);
+
+        if (email.value && company.value) {
+            Parse.initialize('d2rQTCq8v5Dy1f8qtGvdhVIIgffVUxzaJo7RjN4a', 'cB1bxH0GwSVwzsZ0n6vOriNdBxOE5SAlAEV3F0Ry');
+
+            var EarlyAccess = Parse.Object.extend('EarlyAccess'),
+                request = new EarlyAccess();
+
+            request.save({
+                appName: 'visionheat',
+                emailAddress: email.value,
+                companyName: company.value
+            }).then(function (object) {
+                feedback.innerHTML = "Thank you. We'll send you an invitation as soon as possible at "+email.value;
+                email.value = '';
+                company.value = '';
+            }, function (object, error) {
+                window.alert('There was an error.\nWe apologize for any inconvenience.');
+            });
+        } else {
+            feedback.innerHTML = 'Please enter your email address and company name';
+        }
+    };
+
+    var clickSignUpTop = function () {
+        sendToParse('Top');
+    };
+    var clickSignUpBottom = function () {
+        sendToParse('Bottom');
+    };
+
+    document.getElementById('btn-signup-top').addEventListener('click', clickSignUpTop, false);
+    document.getElementById('btn-signup-bottom').addEventListener('click', clickSignUpBottom, false);
+
+</script>
+
 
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->

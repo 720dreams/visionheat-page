@@ -53,10 +53,6 @@ a {
     max-width: 100%;
 }
 
-.margin-signup {
-    margin: 20px 0 10px 0;
-}
-
 .margin-bottom {
     margin-bottom: 60px;
 }
@@ -168,6 +164,17 @@ input[type=button] {
 .devices-img {
     max-width: 80%;
 }
+
+.signUpFeedback {
+    font-style: italic;
+    padding: 5px;
+    transition: height 1s ease;
+}
+
+.margin-signup {
+    margin: 0px 0 10px 0;
+}
+
 
 ///////////////////////////////////////////
 //
