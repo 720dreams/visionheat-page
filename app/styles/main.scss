@@ -115,6 +115,7 @@ a {
 .hero {
     width: 100%;
     background-color: $primary;
+    border-top: 5px solid $primary;
 
     &.hero-img {
         background: url('/images/visionheat-scene.jpg') no-repeat center center fixed;
@@ -225,9 +226,13 @@ input[type=button] {
 
 @media (max-width: 650px) {
 
+    .signup-top {
+        background-color: $primary;
+    }
+
+
     .hero {
         h1 {
-            font-size: 2.7rem;
             margin-top: 40px;
         }
     }
