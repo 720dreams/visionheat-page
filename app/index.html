@@ -47,6 +47,7 @@
                 <div class="pull-right">
                     <div class="small">Have an account?</div>
                     <a class="btn btn-white btn-lg btn-outline" href="https://app.visionheat.com/sign-in"
+                       onclick="trackOutboundLink('https://app.visionheat.com/sign-in'); return false;"
                        role="button">Sign in</a>
                 </div>
             </div>
@@ -182,6 +183,7 @@
             name = document.getElementById('name' + place);
 
         if (email.value && name.value) {
+            ga('send', 'event', 'signUp', 'redirect');
             window.location.href = 'https://app.visionheat.com/sign-up?email=' + encodeURIComponent(email.value) + '&name=' + encodeURIComponent(name.value)
         } else {
             feedback.innerHTML = 'Please enter your email address and name';
@@ -195,6 +197,13 @@
         signUp('Bottom');
     };
 
+    var trackOutboundLink = function (url) {
+        ga('send', 'event', 'outbound', 'click', url, {
+            'hitCallback': function () {
+                document.location = url;
+            }
+        });
+    }
     document.getElementById('btn-signup-top').addEventListener('click', clickSignUpTop, false);
     document.getElementById('btn-signup-bottom').addEventListener('click', clickSignUpBottom, false);
 
